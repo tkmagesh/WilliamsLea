@@ -15,12 +15,12 @@ namespace LinqBasicsDemo
             var numbers = new List<int>(){1,2,3,4,5,6};
             numbers.LazyFilter(n => n%2 == 0);
             MyUtilities.LazyFilter(numbers, n => n%2 == 0);
-            books.Add(new Book { Id = 1, Title = "C#", Cost = 10, Units = 12 });
-            books.Add(new Book { Id = 9, Title = "F#", Cost = 20, Units = 20 });
-            books.Add(new Book { Id = 5, Title = "D#", Cost = 22, Units = 22 });
-            books.Add(new Book { Id = 3, Title = "E#", Cost = 78, Units = 52 });
-            books.Add(new Book { Id = 2, Title = "K#", Cost = 60, Units = 32 });
-            books.Add(new Book { Id = 7, Title = "J#", Cost = 50, Units = 62 });
+            books.Add(new Book { Id = 1, Title = "C#", Cost = 10, Units = 12, Category = "Technology"});
+            books.Add(new Book { Id = 9, Title = "F#", Cost = 20, Units = 20, Category = "Fiction"});
+            books.Add(new Book { Id = 5, Title = "D#", Cost = 22, Units = 22, Category = "Technology" });
+            books.Add(new Book { Id = 3, Title = "E#", Cost = 78, Units = 52, Category = "Fiction" });
+            books.Add(new Book { Id = 2, Title = "K#", Cost = 60, Units = 32, Category = "Technology" });
+            books.Add(new Book { Id = 7, Title = "J#", Cost = 50, Units = 62, Category = "Fiction" });
             Console.WriteLine("Default List");
             Console.WriteLine("{0}\t{1}\t{2}\t{3}", "Id", "Title", "Cost", "Units");
             for (var i = 0; i < books.Count; i++)
