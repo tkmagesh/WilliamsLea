@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Book.cs" />
+    <Compile Include="BookComparerByCost.cs" />
+    <Compile Include="BookComparerById.cs" />
+    <Compile Include="BookComparerByUnits.cs" />
+    <Compile Include="BooksCollection.cs" />
+    <Compile Include="IBookComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

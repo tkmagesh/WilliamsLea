@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,62 +31,53 @@ namespace LinqBasicsDemo
                 Console.WriteLine(books.Get(i));
             }
 
+            Console.WriteLine();
+            Console.WriteLine("Sorted (Cost) List");
+            Console.WriteLine("{0}\t{1}\t{2}\t{3}", "Id", "Title", "Cost", "Units");
+            books.Sort(new BookComparerByCost());
+            foreach (var book in books)
+            {
+                Console.WriteLine(book);
+            }
+            
+            Console.WriteLine();
+            Console.WriteLine("Sorted (Units) List using delegates");
+            Console.WriteLine("{0}\t{1}\t{2}\t{3}", "Id", "Title", "Cost", "Units");
+
+            //books.Sort(new CompareBookDelegate(CompareBooksByUnits));
+            //books.Sort(CompareBooksByUnits);
+            /*books.Sort(delegate (Book left, Book right)
+                        {
+                            if (left.Units > right.Units) return 1;
+                            if (left.Units == right.Units) return 0;
+                            return -1;
+                        }
+             );*/
+
+            /*books.Sort((left,right) =>
+                {
+                    return Math.Sign(left.Units - right.Units);
+                }
+             );*/
+
+            books.Sort((left, right) => Math.Sign(left.Units - right.Units));
+            
+            for (var i = 0; i < books.Count; i++)
+            {
+                Console.WriteLine(books.Get(i));
+            }
+
+            
+
             Console.ReadLine();
         }
 
+        public static int CompareBooksByUnits(Book left, Book right)
+        {
+            if (left.Units > right.Units) return 1;
+            if (left.Units == right.Units) return 0;
+            return -1;
+        }
+
     }
-
-    public class Book
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public decimal Cost { get; set; }
-        public int Units { get; set; }
-        public override string ToString()
-        {
-            return string.Format("{0}\t{1}\t{2}\t{3}", Id, Title, Cost, Units);
-        }
-    }
-
-    public class BooksCollection
-    {
-        private ArrayList _list = new ArrayList();
-        public void Add(Book book)
-        {
-            _list.Add(book);
-        }
-
-        public void Remove(int index)
-        {
-            _list.RemoveAt(index);
-        }
-
-        public int Count
-        {
-            get { return _list.Count; }
-        }
-
-        public Book Get(int index)
-        {
-            return (Book) _list[index];
-        }
-
-        public void Sort()
-        {
-            for(var i=0;i<_list.Count-1;i++)
-                for (var j = i + 1; j < _list.Count; j++)
-                {
-                    var left = (Book) _list[i];
-                    var right = (Book) _list[j];
-                    if (left.Id > right.Id)
-                    {
-                        //Swap
-                        var temp = left;
-                        _list[i] = _list[j];
-                        _list[j] = temp;
-                    }
-                }
-        }
-    }
-
 }
