@@ -49,6 +49,7 @@
     <Compile Include="BookComparerByUnits.cs" />
     <Compile Include="BooksCollection.cs" />
     <Compile Include="IBookComparer.cs" />
+    <Compile Include="MyUtilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

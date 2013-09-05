@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace LinqBasicsDemo
@@ -9,7 +9,12 @@ namespace LinqBasicsDemo
     {
         static void Main(string[] args)
         {
+
+
             var books = new MyCollection<Book>();
+            var numbers = new List<int>(){1,2,3,4,5,6};
+            numbers.LazyFilter(n => n%2 == 0);
+            MyUtilities.LazyFilter(numbers, n => n%2 == 0);
             books.Add(new Book { Id = 1, Title = "C#", Cost = 10, Units = 12 });
             books.Add(new Book { Id = 9, Title = "F#", Cost = 20, Units = 20 });
             books.Add(new Book { Id = 5, Title = "D#", Cost = 22, Units = 22 });
@@ -95,6 +100,9 @@ namespace LinqBasicsDemo
             {
                 Console.WriteLine(book);
             }
+
+            Console.WriteLine("Are all the books cheap books ? {0}", books.All(b => b.Cost < 50));
+            Console.WriteLine("Is there any C# book at all ? {0}",books.Any(b => b.Title == "C#"));
             Console.ReadLine();
         }
 

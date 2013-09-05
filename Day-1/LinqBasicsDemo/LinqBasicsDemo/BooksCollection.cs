@@ -114,71 +114,18 @@ namespace LinqBasicsDemo
         public object Current { 
         get { return (T) _list[index]; }}
 
-        public int Sum(IntFieldSelectorDelegate<T> fieldSelector)
-        {
-            var result = 0;
-            foreach (var item in _list)
-            {
-                var value = (T) item;
-                result += fieldSelector(value);
-            }
-            return result;
-        }
-
-        public decimal Sum(DecimalFieldSelectorDelegate<T> fieldSelector)
-        {
-            var result = 0m;
-            foreach (var item in _list)
-            {
-                var value = (T)item;
-                result += fieldSelector(value);
-            }
-            return result;
-        }
-
-        public int CountFor(CrieteriaDelegate<T> crieteria)
-        {
-            var result = 0;
-            foreach (var item in _list)
-            {
-                var value = (T) item;
-                if (crieteria(value) == true)
-                    result++;
-            }
-            return result;
-        }
-
-        public MyCollection<T> Filter(CrieteriaDelegate<T> crieteria)
-        {
-            var result = new MyCollection<T>();
-            foreach (var item in _list)
-            {
-                var value = (T)item;
-                if (crieteria(value) == true)
-                    result.Add(value);
-            }
-            return result;
-        }
-
-        public IEnumerable<T> LazyFilter(CrieteriaDelegate<T> crieteria)
-        {
-            foreach (var item in _list)
-            {
-                var value = (T)item;
-                if (crieteria(value) == true)
-                    yield return value;
-            }
-        }
-
+        
         public void Dispose()
         {
             index = -1;
         }
     }
 
-    public delegate int IntFieldSelectorDelegate<T>(T value);
+    /*public delegate int IntFieldSelectorDelegate<T>(T value);
+
+    public delegate TResult DummyDelegate<in T, out TResult>(T value);
 
     public delegate decimal DecimalFieldSelectorDelegate<T>(T value);
 
-    public delegate bool CrieteriaDelegate<T>(T value);
+    public delegate bool CrieteriaDelegate<T>(T value);*/
 }
