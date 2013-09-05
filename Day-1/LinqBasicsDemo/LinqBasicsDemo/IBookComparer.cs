@@ -1,9 +1,9 @@
 ﻿namespace LinqBasicsDemo
 {
-    public interface IBookComparer
+    public interface IValueComparer<T>
     {
-        int Compare(Book left, Book right);
+        int Compare(T left, T right);
     }
 
-    public delegate int CompareBookDelegate(Book left, Book right);
+    public delegate int CompareValueDelegate<T>(T left, T right);
 }

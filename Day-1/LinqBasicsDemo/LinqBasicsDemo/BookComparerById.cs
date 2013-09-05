@@ -1,6 +1,6 @@
 ﻿namespace LinqBasicsDemo
 {
-    public class BookComparerById : IBookComparer
+    public class BookComparerById : IValueComparer<Book>
     {
         public int Compare(Book left, Book right)
         {

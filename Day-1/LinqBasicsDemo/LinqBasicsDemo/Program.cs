@@ -9,7 +9,7 @@ namespace LinqBasicsDemo
     {
         static void Main(string[] args)
         {
-            var books = new BooksCollection();
+            var books = new MyCollection<Book>();
             books.Add(new Book { Id = 1, Title = "C#", Cost = 10, Units = 12 });
             books.Add(new Book { Id = 9, Title = "F#", Cost = 20, Units = 20 });
             books.Add(new Book { Id = 5, Title = "D#", Cost = 22, Units = 22 });
@@ -25,7 +25,7 @@ namespace LinqBasicsDemo
             Console.WriteLine();
             Console.WriteLine("Sorted (Id) List");
             Console.WriteLine("{0}\t{1}\t{2}\t{3}", "Id", "Title", "Cost", "Units");
-            books.Sort();
+            books.Sort((l,r) => Math.Sign(l.Id - r.Id));
             for (var i = 0; i < books.Count; i++)
             {
                 Console.WriteLine(books.Get(i));
@@ -67,8 +67,34 @@ namespace LinqBasicsDemo
                 Console.WriteLine(books.Get(i));
             }
 
-            
+            Console.WriteLine();
+            /*var totalUnits = books.Sum(delegate(Book book)
+                {
+                    return book.Units;
+                });*/
 
+            var totalUnits = books.Sum(book => book.Units);
+            Console.WriteLine("Sum of Units = {0}", totalUnits);
+
+            var overStockedCount = books.CountFor(book => book.Units > 50);
+            Console.WriteLine("Number of books that are over stocked (Units > 50) = {0}",overStockedCount);
+            Console.WriteLine("Number of cheap books (Cost < 50) = {0}", books.CountFor(b => b.Cost < 50));
+            Console.WriteLine("The below are the cheap books");
+            var cheapBooks = books.Filter(b => b.Cost < 50);
+            foreach (var cheapBook in cheapBooks)
+            {
+                Console.WriteLine(cheapBook);
+            
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Using Lazy Evaluation");
+
+            var cheapBooks2 = books.LazyFilter(b => b.Cost < 50);
+            foreach (var book in cheapBooks2)
+            {
+                Console.WriteLine(book);
+            }
             Console.ReadLine();
         }
 
