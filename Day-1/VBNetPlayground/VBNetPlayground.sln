@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VBNetPlayground", "VBNetPlayground\VBNetPlayground.vbproj", "{EC06CCED-099E-4923-9792-3142F57DCCAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC06CCED-099E-4923-9792-3142F57DCCAF}.Debug|x86.ActiveCfg = Debug|x86
+		{EC06CCED-099E-4923-9792-3142F57DCCAF}.Debug|x86.Build.0 = Debug|x86
+		{EC06CCED-099E-4923-9792-3142F57DCCAF}.Release|x86.ActiveCfg = Release|x86
+		{EC06CCED-099E-4923-9792-3142F57DCCAF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
