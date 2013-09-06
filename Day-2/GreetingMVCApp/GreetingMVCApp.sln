@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetingMVCApp", "GreetingMVCApp\GreetingMVCApp.csproj", "{F7BB8261-BE0D-481F-BE5B-39FBE297A812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GreetingMVCAppTests", "GreetingMVCApp.Tests\GreetingMVCAppTests.csproj", "{4EB59B76-CCF5-4BCA-A3E4-38757E734805}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{37B02AFF-D424-4FA1-A0BA-BCD3F3771FC1}"
+	ProjectSection(SolutionItems) = preProject
+		GreetingMVCApp.vsmdi = GreetingMVCApp.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = GreetingMVCApp.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7BB8261-BE0D-481F-BE5B-39FBE297A812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7BB8261-BE0D-481F-BE5B-39FBE297A812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7BB8261-BE0D-481F-BE5B-39FBE297A812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7BB8261-BE0D-481F-BE5B-39FBE297A812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB59B76-CCF5-4BCA-A3E4-38757E734805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB59B76-CCF5-4BCA-A3E4-38757E734805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB59B76-CCF5-4BCA-A3E4-38757E734805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB59B76-CCF5-4BCA-A3E4-38757E734805}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
