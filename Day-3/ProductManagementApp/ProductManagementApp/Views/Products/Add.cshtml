@@ -1,0 +1,25 @@
+﻿@model ProductManagementApp.Models.Product
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    Product Details</h2>
+@using (Html.BeginForm())
+{
+    <div>
+    Id :
+    @if (Model.Id != -1)
+    {
+        @Model.Id
+    }
+</div>
+<div>
+    Name : @Html.TextBoxFor(m => m.Name)
+</div>
+    <div>
+        Price : @Html.TextBoxFor(m => m.Price)
+    </div>
+    <input type="submit" name="Save" value="Save"/>
+    @Html.ActionLink("Cancel", "Index", "Products")
+}

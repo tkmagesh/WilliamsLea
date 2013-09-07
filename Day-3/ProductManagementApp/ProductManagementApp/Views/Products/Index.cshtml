@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ProductManagementApp.Models.Product>
+
+@{
+    ViewBag.Title = "Products List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Products List</h2>
+<h6>Generated at @DateTime.Now.ToLongTimeString()</h6>
+<ul>
+    @foreach (var product in Model)
+    {
+        <li>@product.Name @("($" + product.Price+")")</li>
+    }
+</ul>
+@Html.ActionLink("New Product","Add","Products")
+@TempData["something"]
