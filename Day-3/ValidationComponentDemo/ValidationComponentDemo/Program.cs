@@ -9,6 +9,9 @@ namespace ValidationComponentDemo
     {
         static void Main(string[] args)
         {
+            var value = new GreetInput(){FirstName = "Magesh", LastName = "someone else"};
+            var result = new ObjectValidator(value).Validate();
+            Console.ReadLine();
         }
     }
 
@@ -18,7 +21,7 @@ namespace ValidationComponentDemo
         public string FirstName { get; set; }
 
         //String length should be minimum of 10 characters
-        [Mandatory]
+        [MinLength(10)]
         public string LastName { get; set; }
 
     }
@@ -26,10 +29,68 @@ namespace ValidationComponentDemo
     [AttributeUsage(AttributeTargets.Property)]
     public class MandatoryAttribute : Attribute, IValidate
     {
+        private readonly string _propName;
+        public string ErrorMessage { get; set; }
+
         public bool IsValid(object value)
         {
-            return string.IsNullOrEmpty(value.ToString());
+            return value != null && !string.IsNullOrEmpty(value.ToString());
         }
+
+        public MandatoryAttribute(string propName)
+        {
+            _propName = propName;
+            ErrorMessage = _propName + " cannot be null or empty";
+        }
+
+        public MandatoryAttribute(string propName, string errorMessage)
+        {
+            _propName = propName;
+            ErrorMessage = errorMessage;
+        }
+
+        public MandatoryAttribute()
+        {
+            ErrorMessage = "Value cannot be empty or null";
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class MinLengthAttribute : Attribute, IValidate
+    {
+        private readonly int _length;
+        private readonly string _propName;
+        public string ErrorMessage { get; set; }
+
+        public bool IsValid(object value)
+        {
+            return value != null && value.ToString().Length >= _length;
+        }
+
+        public MinLengthAttribute(int length)
+        {
+            _length = length;
+            ErrorMessage = string.Format("Value cannot be less that {0} charactors length", _length);
+        }
+
+        public MinLengthAttribute(int length, string errorMessage)
+        {
+            _length = length;
+            ErrorMessage = errorMessage;
+        }
+
+
+        public MinLengthAttribute()
+        {
+            ErrorMessage = string.Format("Value cannot be less that {0} charactors length",_length);
+        }
+    }
+
+
+    public interface IValidate
+    {
+        bool IsValid(object value);
+        string ErrorMessage { get; set; }
     }
 
     class ObjectValidator
@@ -43,7 +104,26 @@ namespace ValidationComponentDemo
         public ObjectValidationResult Validate()
         {
             var result = new ObjectValidationResult();
-
+            var type = _objectToBeValidated.GetType();
+            var allPropertyInfos = type.GetProperties();
+            foreach (var propertyInfo in allPropertyInfos)
+            {
+                var allAttributes = propertyInfo.GetCustomAttributes(false);
+                foreach (var attribute in allAttributes)
+                {
+                    var validate = attribute as IValidate;
+                    if (validate != null)
+                    {
+                        var attrValue = propertyInfo.GetValue(_objectToBeValidated, null);
+                        var validator = validate;
+                        if (!validator.IsValid(attrValue))
+                        {
+                            result.AddError(propertyInfo.Name, validator.ErrorMessage);
+                        }
+                    }
+                }
+            }
+            //Write code 
             return result;
         }
     }
