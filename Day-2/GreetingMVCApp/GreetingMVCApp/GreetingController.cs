@@ -39,15 +39,15 @@ namespace GreetingMVCApp
             data["ValidationResult"] = new Dictionary<string,string>();
             return new ViewResult(){ViewName = "Input", ViewData = data};
         }
-        public ViewResult Greet(string firstName, string lastName)
+        public ViewResult Greet(NameInput nameInput)
         {
             var data = new ViewDataDictionary();
             var validator = new NameValidator();
-            validator.Validate(firstName, lastName);
+            validator.Validate(nameInput.firstName, nameInput.lastName);
             if (validator.HasErrors)
             {
-                data["FirstName"] = firstName;
-                data["LastName"] = lastName;
+                data["FirstName"] = nameInput.firstName;
+                data["LastName"] = nameInput.lastName;
                 data["ValidationResult"] = validator.ValidationResult;
                  
                 return new ViewResult()
@@ -57,7 +57,7 @@ namespace GreetingMVCApp
                     };
             }
             var currentTime = _timeService.GetCurrentTime();
-            var name = lastName + ", " + firstName;
+            var name = nameInput.lastName + ", " + nameInput.firstName;
 
             if (currentTime.Hour > 6 && currentTime.Hour < 18)
             {
@@ -76,5 +76,10 @@ namespace GreetingMVCApp
                 };
         }
     
+    }
+    public class NameInput
+    {
+        public string firstName { get; set; }
+        public string lastName { get; set; }
     }
 }

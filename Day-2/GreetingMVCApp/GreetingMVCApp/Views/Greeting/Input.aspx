@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Input</title
+    <title>Input</title>
     <style type="text/css">
         .error {
             border: 1px solid red;
@@ -14,7 +14,7 @@
 </head>
 <body>
     <%
-        var firstName = (astring)ViewData["FirstName"];
+        var firstName = (string)ViewData["FirstName"];
         var lastName = (string)ViewData["LastName"];
         var validationResult = (Dictionary<string,string>) ViewData["ValidationResult"]; %>
     <form action="/Greeting/Greet" method="post">
