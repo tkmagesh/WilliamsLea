@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task Manager</title>
+	<style>
+	.completed {
+		color : red;
+		font-style: italic;
+		text-decoration: line-through;
+	}
+	.hint{
+		color : gray;
+		font-style: italic;
+	}
+	</style>
+	<script src="jquery-1.8.3.js"></script>
+	<script src="jquery.hint.js"></script>
+	<script>
+	(function(){
+		function onBtnAddTaskClick(){
+			$("<li>")
+				.text($("#txtTask").val())
+				.hide()
+				.prependTo("#ulTaskList")
+				.fadeIn('slow');
+		}
+
+		function onBtnRemoveCompletedClick(){
+			/*$("#ulTaskList > li").each(function(index,elem){
+				var $elem = $(elem);
+				if ($elem.hasClass("completed"))
+					$elem.remove();
+			});*/
+			//$("#ulTaskList > li.completed").remove();
+			$("#ulTaskList > li.completed").fadeOut("fast",function(){
+				$(this).remove();
+			});
+		}
+
+		function onTaskItemClick(){
+/*			var $this = $(this);
+			if ($this.hasClass("completed")){
+				$this.removeClass("completed");
+			} else {
+				$this.addClass("completed");
+			}
+*/
+			$(this).toggleClass("completed");
+		}
+
+		function initialize(){
+			
+			$(":text").hint();
+			$("#btnAddTask").on("click",onBtnAddTaskClick);
+			$("#btnRemoveCompleted").click(onBtnRemoveCompletedClick);
+			$("#ulTaskList").on("click","li",onTaskItemClick)
+		}
+		$(initialize);
+	}());
+	</script>
+</head>
+<body>
+	<h1>Task Manager</h1>
+	<div class="content">
+		<span>Task :</span>
+		<input type="text" name="" id="txtTask" hint="[Enter the task]">
+		<input type="button" value="Add Task" id="btnAddTask" >
+		<input type="button" value="Remove Completed" id="btnRemoveCompleted">
+		<ul id="ulTaskList">
+			<li>Task - 1</li>
+			<li>Task - 2</li>
+			<li>Task - 3</li>
+		</ul>
+		<div id="divMessage"></div>
+	</div>
+	<input type="text" name="" id="txtAge" hint="Enter the age">
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+﻿<Window x:Class="WPFIntroduction.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        FontSize="28"
+        xmlns:myApp="clr-namespace:WPFIntroduction"
+        Title="MainWindow" Height="350" Width="525" >
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Label Content="Salary :" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0"></Label>
+        <TextBox Grid.Column="1" Margin="5" x:Name="txtSalary" ></TextBox>
+        <Label Content="Tax :" HorizontalAlignment="Right" Grid.Row="1"></Label>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" 
+                Grid.Column="1">
+            
+            <Slider SmallChange="1" LargeChange="1" Name="sliderTax" Width="230" Maximum="50" Minimum="0" Value="0"  VerticalAlignment="Center"/>
+            <TextBox Text="{Binding ElementName=sliderTax, Path=Value, StringFormat=0, Mode=OneWay}"  >
+                <TextBox.Resources>
+                    <myApp:TaxToBrushConverter x:Key="taxToBrushConverter"></myApp:TaxToBrushConverter>
+                </TextBox.Resources>
+                <TextBox.Foreground>
+                    <Binding ElementName="sliderTax" Path="Value" >
+                        <Binding.Converter>
+                            <StaticResource ResourceKey="taxToBrushConverter"></StaticResource>
+                        </Binding.Converter>
+                    </Binding>
+                </TextBox.Foreground>
+            </TextBox>
+        </StackPanel>
+        
+        <TextBlock Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Center"
+                   HorizontalAlignment="Center"  >
+            <TextBlock.Text>
+                <Binding ElementName="txtSalary" Path="Text"></Binding>
+            </TextBlock.Text>
+            <TextBlock.FontSize>
+                <Binding ElementName="sliderFontSize" Path="Value"></Binding>
+            </TextBlock.FontSize>
+        </TextBlock>
+        
+    </Grid>
+</Window>

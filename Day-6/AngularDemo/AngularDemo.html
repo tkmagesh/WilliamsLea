@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Angular Demo</title>
+	<script src="Angular.min.js"></script>
+	
+</head>
+<body ng-app>
+	<div ng-controller="NameController">
+	<input type="text" name="" id="" ng-model="name.firstName">
+	<input type="text" ng-model="name.lastName">
+	<div>{{name.fullName()}}</div>
+	</div>
+	<script>
+		function NameController($scope){
+			$scope.name = {
+				firstName : '',
+				lastName : '',
+				fullName : function(){
+					return this.firstName + " " + this.lastName;
+				}
+			}
+		}
+	</script>
+</body>
+</html>
